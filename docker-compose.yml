@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  mcp-server:
+    build:
+      context: ./mcp_server
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - userservice
+
   userservice:
     image: khshanovskyi/mockuserservice:latest
     ports:
